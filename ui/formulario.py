@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from services.chamado_service import criar_chamado
+from integrations.trello_service import criar_cartao
 
 def abrir_formulario():
     janela = tk.Tk()
@@ -49,7 +50,8 @@ def abrir_formulario():
         }
 
         criar_chamado(dados)
-    
+        criar_cartao(dados)  
+
     btn_enviar = tk.Button(janela, text="Enviar", command=enviar)
     btn_enviar.pack(pady=15)
 
