@@ -11,7 +11,7 @@ def criar_tabela():
     BASE_DIR = get_base_path()
     db_path = os.path.join(BASE_DIR, "database.db")
 
-    con = sql.connect("database/database.db")
+    con = sql.connect(db_path)
     cursor = con.cursor()
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS chamados_ti (
