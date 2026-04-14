@@ -10,8 +10,16 @@ api_token = os.getenv("TRELLO_API_TOKEN")
 board_id = os.getenv("TRELLO_BOARD_ID")
 list_id = os.getenv("TRELLO_LIST_ID")
 
+LABELS = {
+    "Alta": "69de9f2426cbc60478fb2343",
+    "Média": "69de9f347387a612f8e11d78",
+    "Baixa": "69de9f3c7ee29a23b77e085c"
+}
+
 def criar_cartao(dados):
     url = "https://api.trello.com/1/cards"
+
+    id_label = LABELS.get(dados["urgencia"])
 
     headers = {
     "Accept": "application/json"
@@ -21,8 +29,9 @@ def criar_cartao(dados):
     'idList': {list_id},
     'key': {api_key},
     'token': {api_token},
-    'name': dados["nome"],
-    'desc': dados["descricao"]
+    'name': dados["setor"] + " - " + dados["nome"] + ": " + dados["problema"],
+    'desc': dados["descricao"],
+    'idLabels': id_label
     }
 
     response = requests.request(
