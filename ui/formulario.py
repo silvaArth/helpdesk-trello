@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from services.chamado_service import criar_chamado
 from integrations.trello_service import criar_cartao
 
@@ -35,8 +36,8 @@ def abrir_formulario():
     combo_urgencia.pack(pady=5)
 
     def enviar():
-        nome = entrada_nome.get()
-        setor = entrada_setor.get()
+        nome = entrada_nome.get().strip()
+        setor = entrada_setor.get().strip()
         problema = combo_problemas.get()
         descricao = entrada_desc.get("1.0", tk.END).strip()
         urgencia = combo_urgencia.get()
@@ -51,6 +52,14 @@ def abrir_formulario():
 
         criar_chamado(dados)
         criar_cartao(dados)  
+
+        messagebox.showinfo("Sucesso", "Chamado criado com sucesso!")
+
+        entrada_nome.delete(0, tk.END)
+        entrada_setor.delete(0, tk.END)
+        combo_problemas.set("")
+        entrada_desc.delete("1.0", tk.END)
+        combo_urgencia.set("")
 
     btn_enviar = tk.Button(janela, text="Enviar", command=enviar)
     btn_enviar.pack(pady=15)
