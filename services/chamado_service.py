@@ -1,8 +1,18 @@
 import sqlite3 as lite
 from datetime import datetime
+import os
+import sys
+
+def get_base_path():
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+    return os.path.dirname(os.path.abspath(__file__))
 
 def criar_chamado(dados):
-    con = lite.connect("database/database.db")
+    BASE_DIR = get_base_path()
+    db_path = os.path.join(BASE_DIR, "database.db")
+
+    con = lite.connect(db_path)
     cursor = con.cursor()
 
     data_atual = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
