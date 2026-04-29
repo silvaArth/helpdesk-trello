@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <title>helpWB</title>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='img/pms - logo horizontal monocromatico branco.png')}}" alt="Logo da Prefeitura de Sarzedo">
+    </header>
+    <main>
+        <h1>Sistema de chamados da Prefeitura de Sarzedo</h1>
+
+        <div id="formulario">
+            <form action="criar" method="POST">
+                <div id="opcoes">
+                    <input class="caixa" type="text" name="nome" required placeholder="Digite seu nome">
+
+                    <select class="caixa selecao" name="secretaria" >
+                        <option value="" disabled selected>Selecione sua secretaria</option>
+                        <option value="Administração">Administração</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Educação">Educação</option>
+                        <option value="Transporte">Transporte</option>
+                    </select>
+            
+                    <select class="caixa selecao" name="problema">
+                        <option value="" disabled selected>Tipo de problema</option>
+                        <option value="Impressora">Impressora</option>
+                        <option value="Computador">Computador</option>
+                        <option value="Internet">Internet</option>
+                        <option value="Telefone">Telefone</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+            
+                    <textarea class="caixa texto" name="descricao" placeholder="Descreva o problema"></textarea>
+            
+                    <select class="caixa selecao" name="urgencia">
+                        <option value="" disabled selected>Nível de urgência</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Média">Média</option>
+                        <option value="Baixa">Baixa</option>
+                    </select>
+
+                    <button class="caixa" id="botao" type="submit">Enviar</button>
+                </div>
+        
+            </form>
+        </div>
+    </main>
+</body>
+</html>
